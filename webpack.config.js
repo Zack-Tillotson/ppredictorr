@@ -33,5 +33,16 @@ module.exports = {
       { test: /\.raw\.less$/, loader: 'raw!less'},
     ]
   },
-  plugins: [new webpack.HotModuleReplacementPlugin(), envPlugin]
+  plugins: [new webpack.HotModuleReplacementPlugin(), envPlugin],
+  devServer: {
+    proxy: {
+      '/assets/*': {
+        target: 'http://localhost:8888/assets/'
+      },
+      '/*/$': {
+        target: 'http://localhost:8888/index.html',
+        ignorePath: true
+      }
+    }
+  }
 };

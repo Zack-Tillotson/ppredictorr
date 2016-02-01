@@ -1,6 +1,6 @@
 import Firebase from 'firebase';
 
-const firebaseUrlBase = 'https://zt-jumpstart.firebaseio.com';
+const firebaseUrlBase = 'https://ppredictorr.firebaseio.com';
 
 function getFirebaseUrl(path) {
   return [firebaseUrlBase, path]
@@ -13,4 +13,10 @@ function connect(path) {
   return new Firebase(firebaseUrl);
 }
 
-export default {connect};
+function getDataArray(data, path) {
+	const dataObj = typeof data === 'object' ? data : {};
+	const pathObj= dataObj[path] || [];
+	return pathObj instanceof Array ? pathObj : (["time to impl this!"]);
+}
+
+export default {connect, getDataArray};

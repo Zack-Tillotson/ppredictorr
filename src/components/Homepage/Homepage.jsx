@@ -1,23 +1,27 @@
 import React from 'react';
+
 import InlineCss from "react-inline-css";
+import styles from './styles';
+
+import {connect} from 'react-redux';
+import selector from './selector';
 
 import {Link} from 'react-router';
-import Preferences from '../Preferences';
 
-import styles from './styles';
+import PromoCarousel from '../PromoCarousel';
 
 const Homepage = React.createClass({
 
   render() {
     return (
       <InlineCss stylesheet={styles} componentName="container">
-        <h1>Web Jumpstart</h1>
-        <Link to="/preferences">Preferences</Link>
-        {this.props.children}
-
+        <PromoCarousel data={this.props.promo} />
+        {this.props.isLoggedIn && (
+        	<Link to="/challenges/">Challenges</Link>
+        )}
       </InlineCss>
     );
   }
 });
 
-export default Homepage;
+export default connect(selector)(Homepage);

@@ -30,7 +30,7 @@ const FirebaseStatus = React.createClass({
             </tr>
             <tr>
               <td>Data</td>
-              <td>{this.props.data}</td>
+              <td>{JSON.stringify(this.props.data)}</td>
             </tr>
           </tbody>
         </table>

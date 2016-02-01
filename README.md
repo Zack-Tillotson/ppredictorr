@@ -1,4 +1,4 @@
-# Jumpstart
+# Prediction market group challenge
 Zack Tillotson
 
 ## Development
@@ -23,6 +23,6 @@ npm install -g webpack-dev-server
 
 ## Description
 
-Boilerplate for my react/redux based web applications which use firebase as a backend.
+Out predict your friends!
 
 Copyright 2015 Zachery Tillotson
