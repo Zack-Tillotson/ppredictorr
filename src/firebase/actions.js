@@ -1,7 +1,7 @@
 import actions from '../actions';
 import firebase from './index';
 
-// Don't use these methods directly, rather rhis dispatcher should be attached to a 'connected' component, ie:
+// Don't use these methods directly, rather this dispatcher should be attached to a 'connected' component, ie:
 //
 // import actions from '../firebase/actions';
 // import actions from '../firebase/selector';

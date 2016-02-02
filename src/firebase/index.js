@@ -60,5 +60,15 @@ export default {
     );
 
     return ref;
+  },
+
+  putChallenge(challenge) {
+    const ref = utils.connect('challenges');
+    const {id, ...challengeData} = challenge;
+    if(id) {
+      return ref.child(challenge.id).set(challengeData);
+    } else {
+      return ref.push(challengeData);
+    }
   }
 }

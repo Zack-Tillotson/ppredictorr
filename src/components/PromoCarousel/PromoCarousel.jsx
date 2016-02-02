@@ -23,9 +23,9 @@ const PromoCarousel = React.createClass({
     const cardsData = promo.cards || [];
     const cardListTitle = promo.title || '';
 
-    const cards = cardsData.map(cardData => {
+    const cards = cardsData.map((cardData, index) => {
       return (
-        <PromoCard {...cardData} />
+        <PromoCard key={index} {...cardData} />
       );
     })
 

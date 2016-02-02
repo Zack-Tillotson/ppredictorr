@@ -7,7 +7,7 @@ const PromoCard = React.createClass({
 
   propTypes: {
     title: React.PropTypes.string,
-    title: React.PropTypes.image,
+    image: React.PropTypes.string,
   },
 
   render() {

@@ -11,7 +11,7 @@ import styles from './styles';
 const Challenges = React.createClass({
 
   render() {
-  	const challenges = this.props.data && this.props.data.challenges || [];
+  	const challenges = this.props.challenges || [];
     return (
       <InlineCss stylesheet={styles} componentName="container">
         <h2>Challenges</h2>
