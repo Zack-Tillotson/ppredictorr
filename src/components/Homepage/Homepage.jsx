@@ -9,6 +9,7 @@ import selector from './selector';
 import {Link} from 'react-router';
 
 import PromoCarousel from '../PromoCarousel';
+import Challenges from '../Challenges';
 
 const Homepage = React.createClass({
 
@@ -16,9 +17,7 @@ const Homepage = React.createClass({
     return (
       <InlineCss stylesheet={styles} componentName="container">
         <PromoCarousel data={this.props.promo} />
-        {this.props.isLoggedIn && (
-        	<Link to="/challenges/">Challenges</Link>
-        )}
+        <Challenges challenges={this.props.challenges} />
       </InlineCss>
     );
   }

@@ -9,7 +9,6 @@ import selector from './selector';
 import CardList from '../CardList';
 import PromoCard from '../PromoCard';
 
-
 const PromoCarousel = React.createClass({
 
   propTypes: {
