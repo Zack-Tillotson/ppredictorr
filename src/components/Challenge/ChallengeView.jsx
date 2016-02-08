@@ -11,6 +11,7 @@ import Formsy from 'formsy-react';
 import {FormsyText} from 'formsy-material-ui';
 import IconButton from 'material-ui/lib/icon-button';
 import RaisedButton from 'material-ui/lib/raised-button';
+import CreateOrJoinGroupForm from '../CreateOrJoinGroupForm';
 
 import { browserHistory } from 'react-router'
 
@@ -272,6 +273,7 @@ const ChallengeView = React.createClass({
           this.getQuestionSection(),
           this.getSubmissionButton()
         ])}
+        <CreateOrJoinGroupForm challengeId={this.props.challenge.id} />
       </InlineCss>
     );
   }

@@ -1,17 +1,20 @@
 import firebase from '../../firebase';
+import { browserHistory } from 'react-router';
 
 // Action types
-const requestStarting = 'requestStarting';
-const requestEnding = 'requestEnding';
+export const actionTypes = {
+	requestStarting: 'requestStarting',
+	requestEnding: 'requestEnding',
+}
 
 // Basic creators
 
 const creators = {
 	requestStarting() {
-		return {type: requestStarting}
+		return {type: actionTypes.requestStarting}
 	},
 	requestEnding() {
-		return {type: requestEnding}
+		return {type: actionTypes.requestEnding}
 	}
 }
 
@@ -26,7 +29,24 @@ export default (dispatch, props) => {
 					.then((result) => {
 						dispatch(creators.requestEnding());
 					});
-			}
+			},
+
+			// Create an existing challenge
+			putGroupChallenge(challenge, userId) {
+				dispatch(creators.requestStarting());
+				return firebase.putGroup(challenge, userId)
+					.then((result) => {
+						// then navigate to the page /groups/group id
+						// then sync group id
+						dispatch(creators.requestEnding());
+						const groupId = result.key();
+						browserHistory.push(`/groups/${groupId}`);
+					});
+			},
+
+			// Open existing challenge if user already is in a challenge else start new
+			navigateToGroupChallenge(challenge) {
+			},
 		}
 	}
 }

@@ -70,5 +70,39 @@ export default {
     } else {
       return ref.push(challengeData);
     }
-  }
+  },
+
+  putGroup(challengeId, userId) {
+    const ref = utils.connect('groups');
+    const groupRef = ref.push({challengeId, userId})
+      .then(result => {
+        utils.connect('users').child(userId).child('challenges').child(challengeId).push(result.key())
+        return result;
+      });
+
+    return groupRef;
+  },
+
+  // First see if the user has a group id for this challenge already
+  // If yes, return it
+  // If no, push 
+  //    /groups/group id = {owner: user id, challenge: challenge id}
+  //    /users/user id/challenges/challenge id = group id
+  // then return it
+  getGroupChallengeId(userId, challengeId, onData) {
+    const ref = utils.connect();
+
+    ref.child('users').child(userId).child('challenges').child(challengeId).once(
+      'value', 
+      snapshot => {
+        if(snapshot.exists()) {
+          // sync /groups/group id
+        } else {
+          // push {owner: user id} to /groups/group id
+          // push group id to /users/user id/challenges/challenge id
+          // sync /groups/group id
+        }
+      }
+    ); 
+  },
 }

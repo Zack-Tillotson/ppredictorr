@@ -1,31 +1,6 @@
-import {challenges} from '../../firebase/selector';
-
-function getEmptyAnswer() {
-	return {
-		text: '',
-		image: '',
-	}
-}
-
-function getEmptyQuestion() {
-	return {
-		question: '',
-		image: '',
-		answers: []
-	}
-}
-
-function getEmptyChallenge() {
-	return {
-		title: '',
-		image: '',
-		questions: []
-	}
-}
+import {challenge as challengeSelector, getEmptyChallenge, getEmptyQuestion, getEmptyAnswer} from '../../Application/state/selector';
 
 export default (state, props) => {
-	const challenge = challenges(state)
-		.find(challenge => challenge.id == props.params.id)
-		|| getEmptyChallenge()
+	const challenge = challengeSelector(state, props.params && props.params.id || 0);
   return {challenge, getEmptyChallenge, getEmptyQuestion, getEmptyAnswer};
 }
