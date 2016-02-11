@@ -8,6 +8,7 @@ import Homepage from '../components/Homepage';
 import Preferences from '../components/Preferences';
 import Challenges from '../components/Challenges';
 import Challenge from '../components/Challenge';
+import ChallengeGroup from '../components/ChallengeGroup';
 
 import firebase from '../firebase';
 import actions from '../firebase/actions';
@@ -36,6 +37,9 @@ const Application = React.createClass({
               <IndexRoute component={Challenge} type="view" />
               <Route path="update" component={Challenge} type="update" />
             </Route>
+          </Route>
+          <Route path="groups">
+            <Route path=":groupId" component={ChallengeGroup} />
           </Route>
         </Route>
       </Router>

@@ -40,13 +40,20 @@ export default (dispatch, props) => {
 						// then sync group id
 						dispatch(creators.requestEnding());
 						const groupId = result.key();
-						browserHistory.push(`/groups/${groupId}`);
+						browserHistory.push(`/groups/${groupId}/`);
 					});
 			},
 
 			// Open existing challenge if user already is in a challenge else start new
 			navigateToGroupChallenge(challenge) {
 			},
+
+			initializeGroup(groupId, userId) {
+
+				// Not that important yet.
+			},
+
+			
 		}
 	}
 }

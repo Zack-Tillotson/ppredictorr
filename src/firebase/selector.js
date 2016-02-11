@@ -17,6 +17,15 @@ export const challenges = createSelector(firebase, (firebase) => {
 	return map;
 });
 
+export const groups = createSelector(firebase, (firebase) => {
+	const groups = firebase.data && firebase.data.groups || [];
+	const map = [];
+	Object.keys(groups).forEach((key, index) => {
+		map[index] = {...groups[key], id: key};
+	})
+	return map;
+});
+
 export default createSelector(firebase, authProvider, challenges, (firebase, authProvider, challenges) => {
   return {
     ...firebase,
