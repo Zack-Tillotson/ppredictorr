@@ -25,12 +25,8 @@ const FirebaseStatus = React.createClass({
               <td>{this.props.isLoggedIn ? 'Authenticated' : 'Unauthenticated'}</td>
             </tr>
             <tr>
-              <td>Authentication Provider</td>
+              <td>Provider</td>
               <td>{this.props.authProvider}</td>
-            </tr>
-            <tr>
-              <td>Data</td>
-              <td>{JSON.stringify(this.props.data)}</td>
             </tr>
           </tbody>
         </table>

@@ -10,13 +10,6 @@ export default React.createClass({
     return (
       <InlineCss stylesheet={styles} componentName="component">
         <header>
-          <Link to="/">
-            <h1>
-              <div className="imageContainer">
-                <img src="http://a5.mzstatic.com/us/r30/Purple69/v4/e6/11/cf/e611cfa6-1bd8-51f9-389f-24865faf69f9/icon175x175.png" alt="Jumpstart" />
-              </div>
-            </h1>
-          </Link>
           {this.props.preferencesOpen && (
             <Link to="/">
               <div className="prefLink">
@@ -31,6 +24,13 @@ export default React.createClass({
               </div>
             </Link>
           )}
+          <Link to="/">
+            <h1>
+              <div className="imageContainer">
+                <img src="http://a5.mzstatic.com/us/r30/Purple69/v4/e6/11/cf/e611cfa6-1bd8-51f9-389f-24865faf69f9/icon175x175.png" alt="Jumpstart" />
+              </div>
+            </h1>
+          </Link>
         </header>
       </InlineCss>
     );

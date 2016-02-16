@@ -29,14 +29,17 @@ const CreateOrJoinGroupForm = React.createClass({
         </div>
         {this.props.firebase.isLoggedIn && (
           <div>
-            <div className="actionBtn create" onClick={this.createGroupHandler}>
-              Start a group challenge
-            </div>
             {this.props.groups.map(group => (
               <div key={group.groupId} className="actionBtn continue" onClick={this.openGroupHandler.bind(this, group)}>
                 Continue from {moment(group.timestamp).format('MMM DD, YYYY')}
               </div>
             ))}
+            {this.props.groups.length > 0 && (
+              <div className="seperator">or</div>
+            )}
+            <div className="actionBtn create" onClick={this.createGroupHandler}>
+              Start a new Group Challenge
+            </div>
           </div>
         )}
         {!this.props.firebase.isLoggedIn && (
