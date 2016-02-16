@@ -55,14 +55,14 @@ const Challenge = React.createClass({
 
   addModelQuestion() {
     const model = {...this.state.model};
-    model.questions = [...model.questions, this.props.getEmptyQuestion()];
+    model.questions = [...model.questions, {}];
     this.setState({model, currentQuestion: model.questions.length - 1});
   },
 
   addModelAnswer() {
     const model = {...this.state.model};
     model.questions[this.state.currentQuestion].answers = 
-      [...model.questions[this.state.currentQuestion].answers, this.props.getEmptyAnswer()];
+      [...model.questions[this.state.currentQuestion].answers, {}];
     this.setState({model});
   },
 

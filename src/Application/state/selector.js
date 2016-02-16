@@ -58,4 +58,4 @@ export const groupChallenge = (state, groupId) => {
 	return {group: groupVal, challenge: challenge(state, groupVal.challengeId)};
 }
 
-export default {group, challenge, user, challengeGroups, groupChallenge, getEmptyChallenge, getEmptyQuestion, getEmptyAnswer};
+export default {group, challenge, user, challengeGroups, groupChallenge};

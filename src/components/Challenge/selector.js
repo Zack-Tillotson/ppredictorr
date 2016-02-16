@@ -2,5 +2,5 @@ import {challenge as challengeSelector, getEmptyChallenge, getEmptyQuestion, get
 
 export default (state, props) => {
 	const challenge = challengeSelector(state, props.params && props.params.id || 0);
-  return {challenge, getEmptyChallenge, getEmptyQuestion, getEmptyAnswer};
+  return {challenge};
 }

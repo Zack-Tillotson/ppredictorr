@@ -37,7 +37,7 @@ const ChallengeView = React.createClass({
   },
 
   getChallengeQuestion() {
-    return this.props.challenge.questions[this.props.currentQuestion] || {answers: []};
+    return {answers: [], ...this.props.challenge.questions[this.props.currentQuestion]};
   },
 
   shouldShowForm() {
