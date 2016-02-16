@@ -1,6 +1,11 @@
 import firebaseSelector from '../../firebase/selector';
-import {challenge} from '../../Application/state/selector';
+import {challenge, challengeGroups} from '../../Application/state/selector';
 
 export default (state, props) => {
-  return {firebase: firebaseSelector(state), challenge: challenge(state, props.challengeId)};
+	const firebase = firebaseSelector(state);
+  return {
+  	firebase, 
+  	challenge: challenge(state, props.challengeId),
+  	groups: challengeGroups(state, props.challengeId, '')
+  };
 }

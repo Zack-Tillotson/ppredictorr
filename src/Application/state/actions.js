@@ -31,7 +31,7 @@ export default (dispatch, props) => {
 					});
 			},
 
-			// Create an existing challenge
+			// Create a new group
 			putGroupChallenge(challenge, userId) {
 				dispatch(creators.requestStarting());
 				return firebase.putGroup(challenge, userId)
@@ -40,19 +40,14 @@ export default (dispatch, props) => {
 						// then sync group id
 						dispatch(creators.requestEnding());
 						const groupId = result.key();
-						browserHistory.push(`/groups/${groupId}/`);
+						this.navigateToGroupChallenge(groupId);
 					});
 			},
 
 			// Open existing challenge if user already is in a challenge else start new
-			navigateToGroupChallenge(challenge) {
+			navigateToGroupChallenge(groupId) {
+				browserHistory.push(`/groups/${groupId}/`);
 			},
-
-			initializeGroup(groupId, userId) {
-
-				// Not that important yet.
-			},
-
 			
 		}
 	}

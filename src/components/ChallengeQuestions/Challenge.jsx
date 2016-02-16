@@ -9,8 +9,6 @@ import styles from './styles';
 
 import { browserHistory } from 'react-router';
 
-import ChallengeView from './ChallengeView';
-
 const ChallengeQuestions = React.createClass({
 
   propTypes: {
@@ -72,18 +70,7 @@ const ChallengeQuestions = React.createClass({
   render() {
     return (
       <InlineCss stylesheet={styles} componentName="container">
-        <ChallengeView 
-          
-          challenge={this.state.model} 
-          editable={this.shouldShowForm()}
-          currentQuestion={this.state.currentQuestion}
-
-          navigateQuestion={this.navigateQuestion}
-          addModelQuestion={this.addModelQuestion}
-          addModelAnswer={this.addModelAnswer}
-          removeModelAnswer={this.removeModelAnswer}
-          updateModel={this.updateModel}
-          submitFormHandler={this.submitFormHandler} />
+        Do me!
       </InlineCss>
     );
   }

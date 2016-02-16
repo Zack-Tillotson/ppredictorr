@@ -22,14 +22,25 @@ export const groups = createSelector(firebase, (firebase) => {
 	const map = [];
 	Object.keys(groups).forEach((key, index) => {
 		map[index] = {...groups[key], id: key};
+	});
+	return map;
+});
+
+export const users = createSelector(firebase, (firebase) => {
+	const users = firebase.data && firebase.data.users || [];
+	const map = [];
+	Object.keys(users).forEach((key, index) => {
+		map[index] = {...users[key], id: key};
 	})
 	return map;
 });
 
-export default createSelector(firebase, authProvider, challenges, (firebase, authProvider, challenges) => {
+export default createSelector(firebase, authProvider, challenges, users, groups, (firebase, authProvider, challenges, users, groups) => {
   return {
     ...firebase,
     authProvider,
-    challenges
+    challenges,
+    users,
+    groups
   };
 });

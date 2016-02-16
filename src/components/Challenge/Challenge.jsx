@@ -10,6 +10,7 @@ import styles from './styles';
 import { browserHistory } from 'react-router';
 
 import ChallengeView from './ChallengeView';
+import CreateOrJoinGroupForm from '../CreateOrJoinGroupForm';
 
 const Challenge = React.createClass({
 
@@ -84,6 +85,8 @@ const Challenge = React.createClass({
           removeModelAnswer={this.removeModelAnswer}
           updateModel={this.updateModel}
           submitFormHandler={this.submitFormHandler} />
+
+        <CreateOrJoinGroupForm challengeId={this.props.challenge.id} />
       </InlineCss>
     );
   }

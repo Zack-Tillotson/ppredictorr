@@ -11,7 +11,7 @@ import Formsy from 'formsy-react';
 import {FormsyText} from 'formsy-material-ui';
 import IconButton from 'material-ui/lib/icon-button';
 import RaisedButton from 'material-ui/lib/raised-button';
-import CreateOrJoinGroupForm from '../CreateOrJoinGroupForm';
+import AnswerCard from '../AnswerCard';
 
 import { browserHistory } from 'react-router'
 
@@ -220,12 +220,7 @@ const ChallengeView = React.createClass({
           </IconButton>
       </div>
     ) : (
-      <div key={`answerContainer${this.props.currentQuestion}${index}`} className="answer">
-        <img className="answerImage" src={answer.image} />
-        <div className="answerText">
-          {answer.text}
-        </div>
-      </div>
+      <AnswerCard key={`answerContainer${this.props.currentQuestion}${index}`} {...answer} />
     );
 
   },
@@ -273,7 +268,6 @@ const ChallengeView = React.createClass({
           this.getQuestionSection(),
           this.getSubmissionButton()
         ])}
-        <CreateOrJoinGroupForm challengeId={this.props.challenge.id} />
       </InlineCss>
     );
   }

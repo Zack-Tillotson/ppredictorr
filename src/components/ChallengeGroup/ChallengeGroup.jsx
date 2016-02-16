@@ -17,18 +17,14 @@ const ChallengeGroup = React.createClass({
     group: React.PropTypes.object.isRequired,     // from selector
   },
 
-  onComponentDidMount() {
-
-    // This means we just routed to this directory. Set up the data controls.
-    this.props.dispatch.initializeGroup(this.props.params.groupId);
-
-  },
-
   render() {
     return (
       <InlineCss stylesheet={styles} componentName="container">
         <ChallengeTitle challenge={this.props.challenge} />
-        <div className="groupStatus">Group Status</div>
+        <div className="groupStatus">
+          <div>Group stats - # members, # questions</div>
+          <div>List of members - sorted by score, questions answered, time entered. Badges for 1st, 2nd, 3rd, and last place.</div>
+        </div>
         <ChallengeQuestions challenge={this.props.challenge} />
       </InlineCss>
     );

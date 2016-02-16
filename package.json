@@ -24,6 +24,7 @@
     "less": "^2.5.3",
     "less-loader": "^2.2.2",
     "material-ui": "^0.14.3",
+    "moment": "^2.11.2",
     "raw-loader": "^0.5.1",
     "react": "^0.14.3",
     "react-dom": "^0.14.3",

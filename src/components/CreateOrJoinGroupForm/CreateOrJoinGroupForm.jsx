@@ -7,6 +7,8 @@ import styles from './styles';
 import selector from './selector';
 import dispatcher from '../../Application/state/actions';
 
+import moment from 'moment';
+
 import LoginForm from '../LoginForm';
 
 const CreateOrJoinGroupForm = React.createClass({
@@ -15,8 +17,8 @@ const CreateOrJoinGroupForm = React.createClass({
     this.props.dispatch.putGroupChallenge(this.props.challengeId, this.props.firebase.authInfo.uid);
   },
 
-  openGroupHandler(event) {
-    this.props.dispatch.navigateToGroupChallenge(this.props.challengeId);
+  openGroupHandler(group) {
+    this.props.dispatch.navigateToGroupChallenge(group.groupId);
   },
 
   render() {
@@ -30,9 +32,9 @@ const CreateOrJoinGroupForm = React.createClass({
             <div className="actionBtn create" onClick={this.createGroupHandler}>
               Start a group challenge
             </div>
-            {(this.props.groups || []).map(group => (
-              <div className="actionBtn continue" onClick={this.openGroupHandler}>
-                Continue a challenge
+            {this.props.groups.map(group => (
+              <div key={group.groupId} className="actionBtn continue" onClick={this.openGroupHandler.bind(this, group)}>
+                Continue from {moment(group.timestamp).format('MMM DD, YYYY')}
               </div>
             ))}
           </div>
