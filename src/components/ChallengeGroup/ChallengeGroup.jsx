@@ -15,6 +15,40 @@ const ChallengeGroup = React.createClass({
   propTypes: {
     challenge: React.PropTypes.object.isRequired, // from selector
     group: React.PropTypes.object.isRequired,     // from selector
+    user: React.PropTypes.object.isRequired,      // from selector
+  },
+
+  componentDidMount() {
+    this.syncGroup(this.props);
+  },
+
+  componentWillUpdate(nextProps) {
+    this.syncGroup(nextProps);
+  },
+
+  componentWillUnmount() {
+    this.unsyncGroup();
+  },
+
+  syncGroup(props) {
+
+    if(!this.groupRef) {
+
+      const {userId, params} = props;
+      const {groupId} = params;
+
+      // Navigating to a group page means the user is joining this challenge group
+      this.groupRef = this.props.dispatch.syncGroup(groupId, userId);
+
+    }
+
+  },
+
+  unsyncGroup() {
+    if(!!this.groupRef) {
+      this.groupRef.off();
+      this.groupRef = undefined;
+    }
   },
 
   render() {

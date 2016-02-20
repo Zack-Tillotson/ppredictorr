@@ -63,6 +63,39 @@ export default {
     return ref;
   },
 
+  syncUserData(onData) {
+    utils.connect().onAuth((auth) => {
+
+      const path = 'user';
+
+      if(!!auth) { // If we're logged in
+
+        const refPath = `users/${auth.uid}`;
+        const ref = utils.connect(path);
+
+        ref.on(
+          'value', 
+          snapshot => {
+            if(snapshot.exists()) {
+              onData({path, error: false, data: snapshot.val()});
+            } else {
+              onData({path, error: true, data: {}});
+            }
+          }, 
+          error => {
+            console.log("Firebase error", error);
+            onData({path, error: true, data: null, errorData: error});
+          }
+        );
+
+        return ref;
+
+      } else { // Not logged in
+        onData({path, error: false, data: null});
+      }
+    });
+  },
+
   putChallenge(challenge) {
     const ref = utils.connect('challenges');
     const {id, ...challengeData} = challenge;
@@ -75,17 +108,25 @@ export default {
 
   putGroup(challengeId, userId) {
     const ref = utils.connect('groups');
-    const groupRef = ref.push({challengeId, userId, timestamp: Firebase.ServerValue.TIMESTAMP})
+    const groupRef = ref.push({challengeId, owner: userId, timestamp: Firebase.ServerValue.TIMESTAMP})
       .then(result => {
-        utils.connect('users')
-          .child(userId)
-          .child('challenges')
-          .child(challengeId)
-          .push({timestamp: Firebase.ServerValue.TIMESTAMP, groupId: result.key()})
+        const groupId = result.key();
+        this.putUserGroupAffiliation(userId, groupId);
         return result;
       });
 
     return groupRef;
+  },
+
+  putUserGroupAffiliation(userId, groupId) {
+    if(!!userId) {
+      return utils.connect('users')
+        .child(userId)
+        .child('groups')
+        .child(groupId)
+        .child('joined')
+        .set(Firebase.ServerValue.TIMESTAMP);
+    }
   },
   
 }

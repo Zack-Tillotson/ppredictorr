@@ -14,7 +14,7 @@ import LoginForm from '../LoginForm';
 const CreateOrJoinGroupForm = React.createClass({
 
   createGroupHandler(event) {
-    this.props.dispatch.putGroupChallenge(this.props.challengeId, this.props.firebase.authInfo.uid);
+    this.props.dispatch.putGroupChallenge(this.props.challengeId, this.props.firebase.userId);
   },
 
   openGroupHandler(group) {

@@ -26,6 +26,10 @@ const dispatcher = (dispatch) => {
         return firebase.syncData(dispatchData, path);
       },
 
+      syncUserData() {
+        return firebase.syncUserData(dispatchData);
+      },
+
       requestLogin(service) {
         dispatch(() => {
           firebase.requestAuth(service, (error) => {console.log("Firebase auth error!", error)});

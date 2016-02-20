@@ -29,13 +29,8 @@ export const challenge = (state, challengeId) => {
 		|| getEmptyChallenge();
 }
 
-export const user = (state) => {
-	const baseState = firebase(state);
-	return baseState.users
-		.find(user => user.id == baseState.userId) || {};
-}
-
 export const challengeGroups = (state, challengeId, userId) => {
+	return [];// TODO
 	const baseState = firebase(state);
 	const thisUser = user(state);
 	const groups = baseState.groups;
@@ -43,8 +38,9 @@ export const challengeGroups = (state, challengeId, userId) => {
 		const challengeObject = thisUser.challenges[challengeId];
 		return Object.keys(challengeObject)
 			.map(key => challengeObject[key]);
+	} else {
+		return [];
 	}
-	return [];
 }
 
 export const group = (state, groupId) => {
@@ -58,4 +54,4 @@ export const groupChallenge = (state, groupId) => {
 	return {group: groupVal, challenge: challenge(state, groupVal.challengeId)};
 }
 
-export default {group, challenge, user, challengeGroups, groupChallenge};
+export default {group, challenge, 	challengeGroups, groupChallenge};

@@ -4,7 +4,7 @@ function getInitialState() {
   return {
     isLoggedIn: false,
     userId: '',
-    data: '',
+    data: {},
     connected: false,
     serverTimeOffset: 0
   }
@@ -22,7 +22,11 @@ export default (state = getInitialState(), action) => {
       } else if(action.path == '.info/serverTimeOffset') {
         return {...state, serverTimeOffset: action.data};
       } else {
-        return {...state, data: action.data};
+
+        // Got actual data from Firebase
+        const data = state.data;
+        data[action.path] = action.data;
+        return {...state, data};
       }
       break;
   }

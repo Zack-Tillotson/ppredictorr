@@ -26,21 +26,11 @@ export const groups = createSelector(firebase, (firebase) => {
 	return map;
 });
 
-export const users = createSelector(firebase, (firebase) => {
-	const users = firebase.data && firebase.data.users || [];
-	const map = [];
-	Object.keys(users).forEach((key, index) => {
-		map[index] = {...users[key], id: key};
-	})
-	return map;
-});
-
-export default createSelector(firebase, authProvider, challenges, users, groups, (firebase, authProvider, challenges, users, groups) => {
+export default createSelector(firebase, authProvider, challenges, groups, (firebase, authProvider, challenges, groups) => {
   return {
     ...firebase,
     authProvider,
     challenges,
-    users,
     groups
   };
 });

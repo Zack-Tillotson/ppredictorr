@@ -21,7 +21,9 @@ const Application = React.createClass({
 
   componentDidMount() {
     this.props.firebase.monitorConnection();
-    this.props.firebase.syncData('/');
+    this.props.firebase.syncData('promo'); // Publicly visible
+    this.props.firebase.syncData('challenges'); // Publicly visible
+    this.props.firebase.syncUserData(); // Only visible to self, at 'users/{uid}/'
   },
 
   render() {
